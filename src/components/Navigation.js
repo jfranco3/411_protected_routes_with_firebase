@@ -4,8 +4,8 @@ import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 import MenuIcon from "@mui/icons-material/Menu";
-
-const Navigation = ({user}) => {
+//rendered by App.js
+const Navigation = ({ user }) => {
   const navigate = useNavigate();
   console.log("auth.currentUser:from navigation.js", auth.currentUser);
   return (
