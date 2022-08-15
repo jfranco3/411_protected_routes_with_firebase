@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 // import {doc, deleteDoc} functions from "firebase/firestore"
 
-
 import AddCar from "./AddCar";
 import Chart from "./Chart";
 import Total from "./Total";
@@ -31,8 +30,6 @@ const Dashboard = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,12 +41,12 @@ const Dashboard = (props) => {
   // This event handling function will be responsible for deleting a document from Firestore
   const handleDelete = (anchor) => {
     // The anchor is coming from the element in which we click the "MoreVert" icon
-    console.log(anchor)
+    console.log(anchor);
     // This anchor will carry with it the "id" of the current document we clicked
-    console.log(anchor.id)
+    console.log(anchor.id);
     // Create Firestore query function here. Make sure to use async/await
     // Also, make sure to wrap your code in a try/catch block to handle any errors
-    
+
     handleClose();
   };
 
@@ -97,11 +94,7 @@ const Dashboard = (props) => {
               <TableCell>{car.horsepower}</TableCell>
               <TableCell>{car.colors.join(", ")}</TableCell>
               <TableCell align="center">
-                <IconButton
-                  key={car.id}
-                  id={car.id}
-                  onClick={handleClick}
-                >
+                <IconButton key={car.id} id={car.id} onClick={handleClick}>
                   <MoreVertIcon />
                 </IconButton>
               </TableCell>
