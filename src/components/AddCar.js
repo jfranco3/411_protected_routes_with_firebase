@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-// import {db} instance from the firebase-config file
+import { db } from "./../firebase-config";
+import {
+  collection,
+  writeBatch,
+  doc,
+  getDocs,
+  addDoc,
+} from "firebase/firestore";
 
 // Import necessary functions from firebase/firestore library: {collection, doc, setDoc}
 
@@ -61,8 +68,8 @@ export default function AddCar(props) {
     console.log("This is your new car:", car);
     // Create Firestore query function here. Make sure to use async/await
     // Also, make sure to wrap your code in a try/catch block to handle any errors
-    
-    handleClose()
+
+    handleClose();
   };
 
   return (

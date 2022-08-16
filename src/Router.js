@@ -25,7 +25,7 @@ const ProtectedRoute = (props) => {
 };
 
 const Router = (props) => {
-  const { user, carsData } = props;
+  const { user, carsData, setCarsData } = props;
   return (
     <Routes>
       <Route
