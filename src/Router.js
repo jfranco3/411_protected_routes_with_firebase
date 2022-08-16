@@ -24,7 +24,8 @@ const ProtectedRoute = (props) => {
   );
 };
 
-const Router = ({ user }) => {
+const Router = (props) => {
+  const { user, carsData } = props;
   return (
     <Routes>
       <Route
@@ -35,7 +36,13 @@ const Router = ({ user }) => {
       <Route path="/signup" element={<SignUp />} />
       <Route
         path="/dashboard"
-        element={<ProtectedRoute user={user} component={Dashboard} />}
+        element={
+          <ProtectedRoute
+            user={user}
+            carsData={carsData}
+            component={Dashboard}
+          />
+        }
       />
       <Route
         path="/about"

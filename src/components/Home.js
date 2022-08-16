@@ -8,27 +8,21 @@ import {
   Typography,
 } from "@mui/material";
 
-
 import carsData from "../cars.json";
 import Query from "./Query";
 
-const Home = () => {
-
-
+const Home = (props) => {
   const toggleFavorite = async (carId) => {
+    const handleAdd = async (carId) => {};
 
-      const handleAdd = async (carId) => {
-      };
-  
-      const handledelete = async (id) => {       
-      };
-    }
- 
+    const handledelete = async (id) => {};
+  };
+
   console.log("CARS", carsData);
 
   return (
     <>
-        <Query/>
+      <Query />
       <div className="card-container">
         {carsData.map((car, idx) => (
           <Card key={idx} className="card">
@@ -54,6 +48,5 @@ const Home = () => {
     </>
   );
 };
-
 
 export default Home;

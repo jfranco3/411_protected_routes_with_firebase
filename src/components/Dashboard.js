@@ -8,7 +8,6 @@ import AddCar from "./AddCar";
 import Chart from "./Chart";
 import Total from "./Total";
 import EditCar from "./EditCar";
-import carsData from "../cars.json";
 
 import {
   Container,
@@ -27,6 +26,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // Make sure to pass (props) as the parameter to get access to props being pass into this Component
 const Dashboard = (props) => {
+  const { carsData } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -61,9 +61,9 @@ const Dashboard = (props) => {
         justifyContent="space-around"
         alignItems="center"
       >
-        <Chart />
+        {/* <Chart carsData={carsData} /> */}
         <div align="center">
-          <Total />
+          <Total carsData={carsData} />
           <AddCar />
         </div>
       </Stack>

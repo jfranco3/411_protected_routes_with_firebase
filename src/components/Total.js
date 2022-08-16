@@ -2,13 +2,14 @@ import { Typography } from "@mui/material";
 import React from "react";
 
 // Don't forget to pass along (props) as the parameter
-const Total = () => {
+const Total = (props) => {
+  const { carsData } = props;
   return (
     <div style={{ textAlign: "center" }}>
       <Typography variant="h3">Total Cars:</Typography>
       <Typography variant="h3">
         {/* change 20 to props.carsData.length */}
-        {20}
+        {carsData.length}
       </Typography>
     </div>
   );
