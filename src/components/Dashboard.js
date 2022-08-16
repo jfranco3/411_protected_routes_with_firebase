@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-// import {useIsAuthorized} from './../hooks/customHooks'
-// import the {db} instance from the 'firebase/config' file
-
-// import {doc, deleteDoc} functions from "firebase/firestore"
-
+import { useIsAuthorized } from "./../hooks/customHooks";
 import AddCar from "./AddCar";
 import Chart from "./Chart";
 import Total from "./Total";
 import EditCar from "./EditCar";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "./../firebase-config";
 
 import {
   Container,
