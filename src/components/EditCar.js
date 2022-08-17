@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 // import {db} instance from the firebase-config file
-
+import { db } from "./../firebase-config";
 // Import necessary functions from firebase/firestore library: {collection, doc, setDoc}
 
-import { Chip, Grid, IconButton, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, } from "@mui/material";
+import {
+  Chip,
+  Grid,
+  IconButton,
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditCar(props) {
@@ -63,7 +73,7 @@ export default function EditCar(props) {
             <Grid item xs={6}>
               <TextField
                 inputProps={{ fontSize: "50px" }}
-                value={car.make}
+                value={car?.make}
                 id="make"
                 label="Make"
                 type="text"
@@ -76,7 +86,7 @@ export default function EditCar(props) {
             <Grid item xs={6}>
               <TextField
                 inputProps={{ fontSize: "50px" }}
-                value={car.make}
+                value={car?.model}
                 id="model"
                 label="Model"
                 type="text"
@@ -88,7 +98,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.miles_per_gallon}
+                value={car?.miles_per_gallon}
                 id="miles_per_gallon"
                 label="Miles Per Gallon"
                 type="number"
@@ -101,7 +111,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.cylinders}
+                value={car?.cylinders}
                 id="cylinders"
                 label="Cylinders"
                 type="number"
@@ -112,7 +122,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.displacement}
+                value={car?.displacement}
                 id="displacement"
                 label="Displacement"
                 type="number"
@@ -125,7 +135,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.horsepower}
+                value={car?.horsepower}
                 id="horsepower"
                 label="Horsepower"
                 type="number"
@@ -136,7 +146,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.Weight_in_lbs}
+                value={car?.weight_in_lbs}
                 id="weight_in_lbs"
                 label="Weight (lbs)"
                 type="number"
@@ -150,7 +160,7 @@ export default function EditCar(props) {
 
             <Grid item xs={6}>
               <TextField
-                value={car.acceleration}
+                value={car?.acceleration}
                 id="acceleration"
                 label="Acceleration"
                 type="number"
@@ -165,7 +175,7 @@ export default function EditCar(props) {
               <TextField
                 fullWidth
                 InputLabelProps={{ shrink: true }}
-                value={car.year}
+                value={car?.year}
                 id="year"
                 label="Year"
                 type="date"
@@ -176,7 +186,7 @@ export default function EditCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.origin}
+                value={car?.origin}
                 id="origin"
                 label="Origin"
                 type="Origin"

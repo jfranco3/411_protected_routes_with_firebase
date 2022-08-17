@@ -27,7 +27,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // Make sure to pass (props) as the parameter to get access to props being pass into this Component
 const Dashboard = (props) => {
-  const { user, carsData, setCarsData } = props;
+  const { carsData, setCarsData } = props;
   const id = useParams().id;
   const car = carsData.find((c) => c.id === id);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -90,7 +90,6 @@ const Dashboard = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* Change "carsData" to "props.carsData" */}
           {carsData.map((car) => (
             <TableRow key={car.id}>
               <TableCell component="th" scope="row">
@@ -101,7 +100,7 @@ const Dashboard = (props) => {
               <TableCell>{car.miles_pergGallon}</TableCell>
               <TableCell>{car.cylinders}</TableCell>
               <TableCell>{car.horsepower}</TableCell>
-              {/* <TableCell>{car.colors.join(", ")}</TableCell> */}
+              <TableCell>{car?.colors?.join(", ")}</TableCell>
               <TableCell align="center">
                 <IconButton key={car.id} id={car.id} onClick={handleClick}>
                   <MoreVertIcon />

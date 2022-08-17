@@ -27,6 +27,8 @@ export default function AddCar(props) {
   const [car, setCar] = useState({
     id: "",
     name: "",
+    make: "",
+    model: "",
     miles_per_gallon: "",
     cylinders: "",
     displacement: "",
@@ -72,16 +74,19 @@ export default function AddCar(props) {
     //   // Also, make sure to wrap your code in a try/catch block to handle any errors
     try {
       const updatedDb = await addDoc(collectionRef, { car });
-      setCarsData([...carsData, car]);
+      console.clear();
       console.log("UPDATED", updatedDb);
+      setCarsData([...carsData, car]);
     } catch (error) {
-      console.log("Error writing to DB", error);
+      console.log("Error!!!", error);
     }
 
     handleClose();
     setCar({
       id: "",
       name: "",
+      make: "",
+      model: "",
       miles_per_gallon: "",
       cylinders: "",
       displacement: "",
@@ -106,19 +111,31 @@ export default function AddCar(props) {
             <Grid item xs={12}>
               <TextField
                 inputProps={{ fontSize: "50px" }}
-                value={car.Name}
-                id="name"
-                label="Name"
+                value={car.make}
+                id="make"
+                label="make"
                 type="text"
                 variant="outlined"
                 size="small"
                 fullWidth
-                onChange={(e) => setCar({ ...car, name: e.target.value })}
+                onChange={(e) => setCar({ ...car, make: e.target.value })}
+              />
+              <TextField
+                inputProps={{ fontSize: "50px" }}
+                value={car.model}
+                id="model"
+                label="model"
+                type="text"
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) => setCar({ ...car, model: e.target.value })}
               />
             </Grid>
+
             <Grid item xs={6}>
               <TextField
-                value={car.Miles_per_Gallon}
+                value={car.miles_per_Gallon}
                 id="miles_per_gallon"
                 label="Miles Per Gallon"
                 type="number"
@@ -131,7 +148,7 @@ export default function AddCar(props) {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                value={car.Cylinders}
+                value={car.cylinders}
                 id="cylinders"
                 label="Cylinders"
                 type="number"
@@ -195,7 +212,7 @@ export default function AddCar(props) {
               <TextField
                 fullWidth
                 InputLabelProps={{ shrink: true }}
-                value={car.Year}
+                value={car.year}
                 id="year"
                 label="Year"
                 type="date"
