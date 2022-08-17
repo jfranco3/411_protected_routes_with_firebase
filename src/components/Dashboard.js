@@ -4,8 +4,11 @@ import AddCar from "./AddCar";
 import Chart from "./Chart";
 import Total from "./Total";
 import EditCar from "./EditCar";
-import { doc, deleteDoc } from "firebase/firestore";
+import { collection, doc, deleteDoc } from "firebase/firestore";
 import { db } from "./../firebase-config";
+import Car from "./Car";
+import cars from "./../cars.json";
+import { useParams } from "react-router-dom";
 
 import {
   Container,
@@ -25,6 +28,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 // Make sure to pass (props) as the parameter to get access to props being pass into this Component
 const Dashboard = (props) => {
   const { user, carsData, setCarsData } = props;
+  const id = useParams().id;
+  const car = carsData.find((c) => c.id === id);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -37,14 +42,20 @@ const Dashboard = (props) => {
   };
 
   // This event handling function will be responsible for deleting a document from Firestore
-  const handleDelete = (anchor) => {
-    // The anchor is coming from the element in which we click the "MoreVert" icon
+  const handleDelete = async (anchor) => {
     console.log(anchor);
     // This anchor will carry with it the "id" of the current document we clicked
-    console.log(anchor.id);
+    console.log("ANCHOR ID", anchor.id);
     // Create Firestore query function here. Make sure to use async/await
     // Also, make sure to wrap your code in a try/catch block to handle any errors
 
+    try {
+      await deleteDoc(doc(db, "cars", { id }));
+      const newData = cars.filter((car) => car.id !== id);
+      console.log("NEW DATA", newData);
+    } catch (error) {
+      console.log("Error setting NEW DATA");
+    }
     handleClose();
   };
 
