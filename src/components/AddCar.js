@@ -73,10 +73,12 @@ export default function AddCar(props) {
     //   // Create Firestore query function here. Make sure to use async/await
     //   // Also, make sure to wrap your code in a try/catch block to handle any errors
     try {
-      const updatedDb = await addDoc(collectionRef, { car });
+      const updatedDb = await addDoc(collectionRef, car);
       console.clear();
       console.log("UPDATED", updatedDb);
-      setCarsData([...carsData, car]);
+      console.log("CAR", car);
+
+      setCarsData([...carsData, { ...car, id: updatedDb.id }]);
     } catch (error) {
       console.log("Error!!!", error);
     }
@@ -113,7 +115,7 @@ export default function AddCar(props) {
                 inputProps={{ fontSize: "50px" }}
                 value={car.make}
                 id="make"
-                label="make"
+                label="Make"
                 type="text"
                 variant="outlined"
                 size="small"
@@ -124,7 +126,7 @@ export default function AddCar(props) {
                 inputProps={{ fontSize: "50px" }}
                 value={car.model}
                 id="model"
-                label="model"
+                label="Model"
                 type="text"
                 variant="outlined"
                 size="small"
@@ -135,7 +137,7 @@ export default function AddCar(props) {
 
             <Grid item xs={6}>
               <TextField
-                value={car.miles_per_Gallon}
+                value={car.miles_per_gallon}
                 id="miles_per_gallon"
                 label="Miles Per Gallon"
                 type="number"

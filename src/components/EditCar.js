@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import {db} instance from the firebase-config file
 import { db } from "./../firebase-config";
 // Import necessary functions from firebase/firestore library: {collection, doc, setDoc}
+import { collection, doc, setDoc } from "firebase/firestore";
 
 import {
   Chip,
@@ -222,7 +223,7 @@ export default function EditCar(props) {
             <Grid item xs={12}>
               <h6>Current Colors: </h6>
               <span>
-                {car.colors.map((color) => (
+                {car?.colors?.map((color) => (
                   <Chip
                     clickable
                     label={color}
