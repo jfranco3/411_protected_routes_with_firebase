@@ -119,6 +119,7 @@ const Dashboard = (props) => {
           <EditCar
             setAnchorEl={setAnchorEl}
             carsData={carsData}
+            setCarsData={setCarsData}
             // If anchorEl exists or is not "null", give us the id.
             carId={anchorEl?.id}
           />

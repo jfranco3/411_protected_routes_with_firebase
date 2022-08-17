@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import {db} instance from the firebase-config file
 import { db } from "./../firebase-config";
 // Import necessary functions from firebase/firestore library: {collection, doc, setDoc}
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collections, updateDoc, doc, deleteDoc } from "firebase/firestore";
 
 import {
   Chip,
@@ -18,11 +18,15 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditCar(props) {
+  const { carId, carsData, setCarsData, setAnchorEl } = props;
   const [open, setOpen] = useState(false);
 
-  const [car, setCar] = useState(
-    props.carsData.find((car) => car.id === Number(props.carId))
-  );
+  const [car, setCar] = useState();
+
+  useEffect(() => {
+    const foundCar = carsData.find((car) => car.id === carId);
+    setCar(foundCar);
+  }, [carsData, carId]);
 
   const [color, setColor] = useState("");
 
@@ -32,7 +36,7 @@ export default function EditCar(props) {
 
   const handleClose = () => {
     setOpen(false);
-    props.setAnchorEl(null);
+    setAnchorEl(null);
   };
 
   const handleDeleteFromArray = (color) => {
@@ -53,12 +57,26 @@ export default function EditCar(props) {
 
   // This function is connected to the "Save Changes" buttons "onClick" event.
   // Make sure to make this function asynchronous
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("This is your new car:", car);
-    console.log("This is the card ID: ", props.carId);
-    // Create Firestore query function here. Make sure to use async/await
-    // Also, make sure to wrap your code in a try/catch block to handle any errors
+    console.log("This is the card ID: ", carId);
+    try {
+      const docRef = doc(db, "cars", carId);
+      await updateDoc(docRef, car);
+      const foundCarIndex = carsData.findIndex((car) => carId === car.id);
+      console.log("FOUND CAR INDEX", foundCarIndex);
 
+      const newCarsData = [...carsData];
+      newCarsData[foundCarIndex] = car;
+
+      setCarsData(newCarsData);
+
+      //have carsData array with objects inside, carId, updated car
+      //want to go into array, find object with specfic carId [i], then replace foundCar [i] with updated car
+      //dont use map
+    } catch (error) {
+      console.log("ERROR", error);
+    }
     handleClose();
   };
 
