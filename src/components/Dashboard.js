@@ -50,9 +50,9 @@ const Dashboard = (props) => {
     // Also, make sure to wrap your code in a try/catch block to handle any errors
 
     try {
-      await deleteDoc(doc(db, "cars", { id }));
-      const newData = cars.filter((car) => car.id !== id);
-      console.log("NEW DATA", newData);
+      await deleteDoc(doc(db, "cars", id));
+      const setCarsData = cars.filter((car) => car.id !== id);
+      console.log("NEW DATA", setCarsData);
     } catch (error) {
       console.log("Error setting NEW DATA");
     }
