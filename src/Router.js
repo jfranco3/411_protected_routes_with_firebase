@@ -40,6 +40,7 @@ const Router = (props) => {
           <ProtectedRoute
             user={user}
             carsData={carsData}
+            setCarsData={setCarsData}
             component={Dashboard}
           />
         }

@@ -6,9 +6,8 @@ import {
   doc,
   getDocs,
   addDoc,
+  setDoc,
 } from "firebase/firestore";
-
-// Import necessary functions from firebase/firestore library: {collection, doc, setDoc}
 
 import {
   Chip,
@@ -19,9 +18,11 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  TableBody,
 } from "@mui/material";
 
 export default function AddCar(props) {
+  const { carsData, setCarsData } = props;
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState({
     id: "",
@@ -64,10 +65,22 @@ export default function AddCar(props) {
 
   // This function is connected to the "Add New Car" buttons "onClick" event.
   // Make sure to make this function asynchronous
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     console.log("This is your new car:", car);
-    // Create Firestore query function here. Make sure to use async/await
-    // Also, make sure to wrap your code in a try/catch block to handle any errors
+    e.preventDefault();
+    const collectionRef = collection(db, "cars");
+    //   // Create Firestore query function here. Make sure to use async/await
+    //   // Also, make sure to wrap your code in a try/catch block to handle any errors
+    try {
+      const updatedDb = await addDoc(collectionRef, { car });
+      setCarsData([...carsData, car]);
+      console.log("UPDATED", updatedDb);
+    } catch (error) {
+      console.log("Error writing to DB", error);
+
+      // };
+      // setCar({ id: "", make: "", model: "", cars: [] });
+    }
 
     handleClose();
   };

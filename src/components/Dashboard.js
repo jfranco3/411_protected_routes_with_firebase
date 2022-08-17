@@ -24,7 +24,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // Make sure to pass (props) as the parameter to get access to props being pass into this Component
 const Dashboard = (props) => {
-  const { carsData } = props;
+  const { user, carsData, setCarsData } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -62,7 +62,7 @@ const Dashboard = (props) => {
         {/* <Chart carsData={carsData} /> */}
         <div align="center">
           <Total carsData={carsData} />
-          <AddCar />
+          <AddCar setCarsData={setCarsData} />
         </div>
       </Stack>
       <Table>

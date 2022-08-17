@@ -63,7 +63,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navigation user={user} />
-      <Router user={user} carsData={carsData} />
+      <Router user={user} carsData={carsData} setCarsData={setCarsData} />
     </BrowserRouter>
   );
 }
