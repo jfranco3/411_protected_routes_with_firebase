@@ -14,7 +14,7 @@ import Dashboard from "./components/Dashboard";
 
 const ProtectedRoute = (props) => {
   const { component: Component, ...rest } = props;
-  console.log("LOOK AT THIS", props.user);
+  // console.log("LOOK AT THIS", props.user);
   const checkAuth = () => !!props.user;
 
   return checkAuth() === true ? (

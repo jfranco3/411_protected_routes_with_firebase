@@ -62,7 +62,7 @@ const Dashboard = (props) => {
         {/* <Chart carsData={carsData} /> */}
         <div align="center">
           <Total carsData={carsData} />
-          <AddCar setCarsData={setCarsData} />
+          <AddCar carsData={carsData} setCarsData={setCarsData} />
         </div>
       </Stack>
       <Table>
@@ -90,7 +90,7 @@ const Dashboard = (props) => {
               <TableCell>{car.miles_pergGallon}</TableCell>
               <TableCell>{car.cylinders}</TableCell>
               <TableCell>{car.horsepower}</TableCell>
-              <TableCell>{car.colors.join(", ")}</TableCell>
+              {/* <TableCell>{car.colors.join(", ")}</TableCell> */}
               <TableCell align="center">
                 <IconButton key={car.id} id={car.id} onClick={handleClick}>
                   <MoreVertIcon />
