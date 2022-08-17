@@ -96,7 +96,7 @@ const Dashboard = (props) => {
               </TableCell>
               <TableCell>{car.make}</TableCell>
               <TableCell>{car.model}</TableCell>
-              <TableCell>{car.miles_pergGallon}</TableCell>
+              <TableCell>{car.miles_per_gallon}</TableCell>
               <TableCell>{car.cylinders}</TableCell>
               <TableCell>{car.horsepower}</TableCell>
               <TableCell>{car?.colors?.join(", ")}</TableCell>
