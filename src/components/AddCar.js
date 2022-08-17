@@ -79,6 +79,19 @@ export default function AddCar(props) {
     }
 
     handleClose();
+    setCar({
+      id: "",
+      name: "",
+      miles_per_gallon: "",
+      cylinders: "",
+      displacement: "",
+      horsepower: "",
+      weight_in_lbs: "",
+      acceleration: "",
+      year: "",
+      origin: "",
+      colors: [],
+    });
   };
 
   return (
