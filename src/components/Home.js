@@ -7,11 +7,10 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-
-import carsData from "../cars.json";
 import Query from "./Query";
 
 const Home = (props) => {
+  const { carsData, setCarsData, carId } = props;
   const toggleFavorite = async (carId) => {
     const handleAdd = async (carId) => {};
 

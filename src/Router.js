@@ -30,7 +30,9 @@ const Router = (props) => {
     <Routes>
       <Route
         path="/"
-        element={<ProtectedRoute user={user} component={Home} />}
+        element={
+          <ProtectedRoute user={user} component={Home} carsData={carsData} />
+        }
       />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
@@ -51,7 +53,14 @@ const Router = (props) => {
       />
       <Route
         path="/car/:id"
-        element={<ProtectedRoute user={user} component={Car} />}
+        element={
+          <ProtectedRoute
+            user={user}
+            component={Car}
+            carsData={carsData}
+            setCarsData={setCarsData}
+          />
+        }
       />
     </Routes>
   );

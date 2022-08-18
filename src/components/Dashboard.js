@@ -69,7 +69,7 @@ const Dashboard = (props) => {
         justifyContent="space-around"
         alignItems="center"
       >
-        {/* <Chart carsData={carsData} /> */}
+        <Chart carsData={carsData} />
         <div align="center">
           <Total carsData={carsData} />
           <AddCar carsData={carsData} setCarsData={setCarsData} />

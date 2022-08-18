@@ -72,8 +72,7 @@ export default function EditCar(props) {
       setCarsData(newCarsData);
 
       //have carsData array with objects inside, carId, updated car
-      //want to go into array, find object with specfic carId [i], then replace foundCar [i] with updated car
-      //dont use map
+      //want to go into carsData array, find object with specfic carId [i], then replace foundCar [i] with updated car
     } catch (error) {
       console.log("ERROR", error);
     }
