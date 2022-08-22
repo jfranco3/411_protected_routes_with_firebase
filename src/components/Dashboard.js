@@ -26,10 +26,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // Make sure to pass (props) as the parameter to get access to props being pass into this Component
 const Dashboard = (props) => {
-  const { carsData, setCarsData } = props;
-
+  const { carsData, setCarsData, user } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const isAuthorized = useIsAuthorized(user, "seller");
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,6 +57,7 @@ const Dashboard = (props) => {
     }
     handleClose();
   };
+  console.log("IS AUTHORIZED", isAuthorized);
 
   return (
     <Container maxWidth="lg" sx={{ marginTop: "50px" }}>
@@ -72,7 +73,10 @@ const Dashboard = (props) => {
         <Chart carsData={carsData} />
         <div align="center">
           <Total carsData={carsData} />
-          <AddCar carsData={carsData} setCarsData={setCarsData} />
+
+          {isAuthorized && (
+            <AddCar carsData={carsData} setCarsData={setCarsData} />
+          )}
         </div>
       </Stack>
       <Table>
