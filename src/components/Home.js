@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import Query from "./Query";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Home = (props) => {
   const { carsData, setCarsData, carId } = props;
@@ -33,6 +35,8 @@ const Home = (props) => {
                 <li>MPG: {car["miles_per_gallon"]}</li>
                 <li>Cylinders: {car["cylinders"]}</li>
                 <li>Horsepower: {car["horsepower"]}</li>
+                <FavoriteBorderIcon />
+                <FavoriteIcon />
               </ul>
             </CardContent>
             <Divider />
