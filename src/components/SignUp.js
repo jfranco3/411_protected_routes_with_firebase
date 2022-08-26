@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Container } from "@mui/material";
 import { auth } from "../firebase-config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SelectUserRole from "./SelectUserRole";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "../firebase-config";
 import { createRole } from "../utils/utilityFunctions";
 
 const SignUp = (props) => {

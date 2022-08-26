@@ -7,11 +7,7 @@
   flex-direction: column;
   margin: 50px auto;
   width: 50%;
-  gap: 15px
-}
-
-.login-button {
-
+  gap: 15px;
 }
 
 .card-container {
@@ -35,7 +31,7 @@ ul {
 }
 
 .text-gray {
-  color: gray
+  color: gray;
 }
 
 .nav-list {

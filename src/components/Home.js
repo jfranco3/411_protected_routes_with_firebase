@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -12,14 +12,21 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Home = (props) => {
-  const { carsData, setCarsData, carId } = props;
-  const toggleFavorite = async (carId) => {
-    const handleAdd = async (carId) => {};
+  const [userLikedCars, setUserLikedCars] = useState([]);
+  const { carsData, setCarsData } = props;
 
-    const handledelete = async (id) => {};
+  const handleAdd = async (idToAdd) => {
+    console.log("IDTOADD", idToAdd);
+    setUserLikedCars([...userLikedCars, idToAdd]);
   };
 
-  console.log("CARS", carsData);
+  const handleDelete = async (idToRemove) => {
+    console.log("IDTODELETE", idToRemove);
+    setUserLikedCars("");
+  };
+  //COMPLETE THIS
+
+  console.log("CARS", userLikedCars);
 
   return (
     <>
@@ -35,8 +42,15 @@ const Home = (props) => {
                 <li>MPG: {car["miles_per_gallon"]}</li>
                 <li>Cylinders: {car["cylinders"]}</li>
                 <li>Horsepower: {car["horsepower"]}</li>
-                <FavoriteBorderIcon />
-                <FavoriteIcon />
+                {/* conditionally rendering */}
+                {userLikedCars.includes(car.id) ? (
+                  <FavoriteIcon
+                    style={{ color: "red" }}
+                    onClick={() => handleDelete(car.id)}
+                  />
+                ) : (
+                  <FavoriteBorderIcon onClick={() => handleAdd(car.id)} />
+                )}
               </ul>
             </CardContent>
             <Divider />
