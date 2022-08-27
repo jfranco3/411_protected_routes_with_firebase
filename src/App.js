@@ -11,6 +11,8 @@ import {
   writeBatch,
   doc,
   getDocs,
+  deleteDoc,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "./firebase-config";
 import cars from "./cars.json";
@@ -18,6 +20,8 @@ import "./App.css";
 
 function App() {
   //Class 8: For Firebase user authentication from onAuthStateChanged
+  const [userLikedCars, setUserLikedCars] = useState([]);
+
   const [user, setUser] = useState({});
 
   //Class 9: Create a useState hook to store the data we Read from Firestore
@@ -59,6 +63,16 @@ function App() {
   }, []);
 
   //class 11:  Query `userLikedCars` collection for the matching document based on the user Id (uid).
+
+  useEffect(() => {
+    const getUsersLikedCars = async () => {
+      const newUserLikedCars = doc(collection(db, "cars"));
+      await setDoc(newUserLikedCars, data);
+    };
+    if (user?.uid != null) {
+      getUsersLikedCars();
+    }
+  }, [user]);
 
   return (
     <BrowserRouter>

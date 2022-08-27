@@ -10,24 +10,48 @@ import {
 import Query from "./Query";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase-config";
 
 const Home = (props) => {
-  const [userLikedCars, setUserLikedCars] = useState([]);
-  const { carsData, setCarsData } = props;
+  const { carsData, setCarsData, user } = props;
 
   const handleAdd = async (idToAdd) => {
     console.log("IDTOADD", idToAdd);
-    setUserLikedCars([...userLikedCars, idToAdd]);
+    // setUserLikedCars([...userLikedCars, idToAdd]);
+    try {
+      const userLikedCarsDocRef = doc(db, "userLikedCars", user.email);
+      setUserLikedCars((prevState) => {
+        const newState = [...prevState, idToAdd];
+        updateDoc(userLikedCarsDocRef, {
+          likedCarsIds: newState,
+        });
+        return newState;
+      });
+    } catch (error) {
+      console.error("ERROR ADDING CAR", error);
+    }
   };
 
   const handleDelete = async (idToRemove) => {
     console.log("IDTODELETE", idToRemove);
-    setUserLikedCars("");
+    // setUserLikedCars(userLikedCars.filter((id) => idToRemove !== id));
+    try {
+      const userLikedCarsDocRef = doc(db, "userLikedCars", user.email);
+      setUserLikedCars((prevState) => {
+        const newState = userLikedCars.filter((id) => idToRemove !== id);
+        updateDoc(userLikedCarsDocRef, {
+          likedCarsIds: newState,
+        });
+        return newState;
+      });
+    } catch (error) {
+      console.error("ERROR DELETING CAR", error);
+    }
   };
-  //COMPLETE THIS
 
   console.log("CARS", userLikedCars);
-
+  console.log("!!!!!!!!!!", userLikedCars);
   return (
     <>
       <Query />
