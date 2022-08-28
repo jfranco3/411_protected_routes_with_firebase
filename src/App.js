@@ -1,10 +1,11 @@
 // import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useId } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 import Navigation from "./components/Navigation";
 import Router from "./Router";
+import cars from "./cars.json";
 import {
   collection,
   addDoc,
@@ -13,9 +14,10 @@ import {
   getDocs,
   deleteDoc,
   setDoc,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "./firebase-config";
-import cars from "./cars.json";
 import "./App.css";
 
 function App() {
@@ -65,19 +67,34 @@ function App() {
   //class 11:  Query `userLikedCars` collection for the matching document based on the user Id (uid).
 
   useEffect(() => {
-    const getUsersLikedCars = async () => {
-      const newUserLikedCars = doc(collection(db, "cars"));
-      await setDoc(newUserLikedCars, data);
+    const getUserLikedCars = async () => {
+      try {
+        const userLikedCarsRef = collection(db, "userLikedCars");
+        const q = query(userLikedCarsRef, where("userId", "==", user.uid));
+        const queryResults = await getDocs(q);
+        queryResults.forEach((doc) =>
+          setUserLikedCars(doc.data().likedCarsIds)
+        );
+      } catch (error) {
+        console.error("ERROR GETTING LIKED CARS", error);
+      }
     };
     if (user?.uid != null) {
-      getUsersLikedCars();
+      getUserLikedCars();
     }
   }, [user]);
 
+  console.log("userLikedCarsFromAPP.js", userLikedCars);
   return (
     <BrowserRouter>
       <Navigation user={user} />
-      <Router user={user} carsData={carsData} setCarsData={setCarsData} />
+      <Router
+        user={user}
+        setUserLikedCars={setUserLikedCars}
+        userLikedCars={userLikedCars}
+        carsData={carsData}
+        setCarsData={setCarsData}
+      />
     </BrowserRouter>
   );
 }

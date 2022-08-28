@@ -14,7 +14,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 
 const Home = (props) => {
-  const { carsData, setCarsData, user } = props;
+  const { carsData, setCarsData, user, userLikedCars, setUserLikedCars } =
+    props;
 
   const handleAdd = async (idToAdd) => {
     console.log("IDTOADD", idToAdd);

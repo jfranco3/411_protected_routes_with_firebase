@@ -29,7 +29,7 @@ The expected behavior is for a user to be able to click a heart icon and save th
 // App.js
 //class 11:  Query `userLikedCars` collection for the matching document based on the user Id (uid).
 useEffect(() => {
-  const getUsersLikedCars = async () => {
+  const getUserLikedCars = async () => {
     // Write the rest of the code here
   };
   if (user?.uid != null) {
