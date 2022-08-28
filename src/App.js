@@ -1,6 +1,6 @@
 // import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import React, { useState, useEffect, useCallback, useId } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 import Navigation from "./components/Navigation";
@@ -19,16 +19,17 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase-config";
 import "./App.css";
+import { FakeCarsContext } from "./Context/FakeCarsProvider";
 
 function App() {
-  //Class 8: For Firebase user authentication from onAuthStateChanged
-  const [userLikedCars, setUserLikedCars] = useState([]);
-
-  const [user, setUser] = useState({});
-
-  //Class 9: Create a useState hook to store the data we Read from Firestore
-  const [carsData, setCarsData] = useState([]);
-
+  const {
+    user,
+    setUser,
+    carsData,
+    setCarsData,
+    userLikedCars,
+    setUserLikedCars,
+  } = useContext(FakeCarsContext);
   //Class 8: Write a useEffect hook for onAuthStateChanged and set the user state.
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -12,10 +12,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
+import { FakeCarsContext } from "./../Context/FakeCarsProvider";
 
+//rendered by Router.js
 const Home = (props) => {
+  // const { userLikedCars } = useContext(FakeCarsContext)
   const { carsData, setCarsData, user, userLikedCars, setUserLikedCars } =
-    props;
+    useContext(FakeCarsContext);
 
   const handleAdd = async (idToAdd) => {
     console.log("IDTOADD", idToAdd);
@@ -40,7 +43,7 @@ const Home = (props) => {
     try {
       const userLikedCarsDocRef = doc(db, "userLikedCars", user.email);
       setUserLikedCars((prevState) => {
-        const newState = userLikedCars.filter((id) => idToRemove !== id);
+        const newState = prevState.filter((id) => idToRemove !== id);
         updateDoc(userLikedCarsDocRef, {
           likedCarsIds: newState,
         });
